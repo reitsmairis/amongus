@@ -13,32 +13,28 @@ sys.stdout = open(os.devnull, 'w')
 IPython.get_ipython().magic("run amongus_model.ipynb")
 sys.stdout = orig_stdout
 
-# You can change this to whatever ou want. Make sure to make the different types
+# You can change this to whatever you want. Make sure to make the different types
 # of agents distinguishable
 def agent_portrayal(agent):
     portrayal = {"Shape": "circle",
-                 "Color": "blue" if type(agent) is Wolf else "green",
+                 "Color": "green" if type(agent) is Crewmate else "green",
                  "Filled": "true",
-                 "Layer": 0,
-                 "r": 0.5}
+                 "Layer": 1,
+                 "r": .5}
     return portrayal
 
-# Create a grid of 20 by 20 cells, and display it as 500 by 500 pixels
-grid = CanvasGrid(agent_portrayal, 20, 20, 500, 500)
-
-# Create a dynamic linegraph
-chart = ChartModule([{"Label": "Sheep",
-                      "Color": "green"},
-                      {"Label": "Wolves",
-                      "Color": "red"}],
-                    data_collector_name='datacollector')
+# Create a grid of 114 by 114 cells, and display it as 570 by 570 pixels
+# grid = CanvasGrid(agent_portrayal, 114, 114, 570, 570)
+grid = CanvasGrid(agent_portrayal, 60, 60, 500, 500)
 
 # Create the server, and pass the grid and the graph
-server = ModularServer(WolfSheep,
-                       [grid, chart],
-                       "WolfSheep Model",
-                       {})
+server = ModularServer(AmongUs,
+                       [grid],
+                       "AmongUs", 
+                       {'map': 'map', 
+                       'n_crew': 100,
+                       'n_impo': 0})
 
-server.port = 8521
+server.port = 8522
 
 server.launch()
