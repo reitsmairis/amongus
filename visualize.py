@@ -16,11 +16,25 @@ sys.stdout = orig_stdout
 # You can change this to whatever you want. Make sure to make the different types
 # of agents distinguishable
 def agent_portrayal(agent):
-    portrayal = {"Shape": "circle",
-                 "Color": "green" if type(agent) is Crewmate else "green",
-                 "Filled": "true",
-                 "Layer": 1,
-                 "r": .5}
+    if type(agent) == Crewmate:
+        portrayal = {"Shape": "circle",
+                    "Color": "blue",
+                    "Filled": "true",
+                    "Layer": 1,
+                    "r": .5}
+    elif type(agent) == Imposter:
+        portrayal = {"Shape": "circle",
+                    "Color": "red",
+                    "Filled": "true",
+                    "Layer": 1,
+                    "r": .5}
+    elif type(agent) == Wall:
+        portrayal = {"Shape": "rect",
+                    "Color": "black",
+                    "Filled": "true",
+                    "Layer": 1,
+                    "w": 1,
+                    "h": 1}
     return portrayal
 
 # Create a grid of 114 by 114 cells, and display it as 570 by 570 pixels
@@ -31,10 +45,10 @@ grid = CanvasGrid(agent_portrayal, 60, 60, 500, 500)
 server = ModularServer(AmongUs,
                        [grid],
                        "AmongUs", 
-                       {'map': 'map', 
-                       'n_crew': 100,
-                       'n_impo': 0})
+                       {'map_layout': 'map', 
+                       'n_crew': 3,
+                       'n_impo': 1})
 
-server.port = 8522
+server.port = 8523
 
 server.launch()
