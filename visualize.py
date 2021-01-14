@@ -21,13 +21,13 @@ def agent_portrayal(agent):
                     "Color": "blue",
                     "Filled": "true",
                     "Layer": 1,
-                    "r": .5}
+                    "r": 2}
     elif type(agent) == Imposter:
         portrayal = {"Shape": "circle",
                     "Color": "red",
                     "Filled": "true",
                     "Layer": 1,
-                    "r": .5}
+                    "r": 2}
     elif type(agent) == Wall:
         portrayal = {"Shape": "rect",
                     "Color": "black",
@@ -39,13 +39,13 @@ def agent_portrayal(agent):
 
 # Create a grid of 114 by 114 cells, and display it as 570 by 570 pixels
 # grid = CanvasGrid(agent_portrayal, 114, 114, 570, 570)
-grid = CanvasGrid(agent_portrayal, 60, 60, 500, 500)
+grid = CanvasGrid(agent_portrayal, 242, 138, 1210, 690)
 
 # Create the server, and pass the grid and the graph
 server = ModularServer(AmongUs,
                        [grid],
                        "AmongUs", 
-                       {'map_layout': 'map', 
+                       {'map_name': 'the_skeld', 
                        'n_crew': 3,
                        'n_impo': 1})
 

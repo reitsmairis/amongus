@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Info sheet met afkortingen en wat welke kleur is op de afbeelding.
+# Info sheet with abbreviations and color codes.
 # =============================================================================
 # UE: Upper Engine
 # LE: Lower Engine
@@ -55,46 +55,43 @@ def coordinates(image):
     
     # The wall (red)
     X,Y = np.where(np.all(img==chardwall,axis=2))
-    hardwall = np.column_stack((X,Y))
+    hardwall = np.column_stack((Y,X))
     
     # Impassable objects
     X,Y = np.where(np.all(img==csoftwall,axis=2))
-    softwall = np.column_stack((X,Y))
+    softwall = np.column_stack((Y,X))
     
     # Different vents
     X,Y = np.where(np.all(img==cvent_UE_R,axis=2))
-    vent_UE_R = np.column_stack((X,Y))
+    vent_UE_R = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_LE_R,axis=2))
-    vent_LE_R = np.column_stack((X,Y))
+    vent_LE_R = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_MB_S_E,axis=2))
-    vent_MB_S_E = np.column_stack((X,Y))
+    vent_MB_S_E = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_C_GbS_Ad,axis=2))
-    vent_C_GbS_Ad = np.column_stack((X,Y))
+    vent_C_GbS_Ad = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_W_N,axis=2))
-    vent_W_N = np.column_stack((X,Y))
+    vent_W_N = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_N_S,axis=2))
-    vent_N_S = np.column_stack((X,Y))
+    vent_N_S = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cwalkable,axis=2))
-    walkable = np.column_stack((X,Y))
+    walkable = np.column_stack((Y,X))
     
     
     return hardwall, softwall, vent_UE_R, vent_LE_R, vent_MB_S_E, vent_C_GbS_Ad, vent_W_N, vent_N_S, walkable
 
 
-# Get Image (put in ur own filepath)
-img = cv2.imread(r'C:\Users\bramm\Pictures\amongusmapmetvents.png')
+# Get Image (put in your own filepath)
+img = cv2.imread('amongus_map_with_events.png')
 
 hardwalls = coordinates(img)[0]
 softwalls = coordinates(img)[1]
 
-
- 
-
-
-    
+print(hardwalls)
+np.save('the_skeld/hardwalls', hardwalls)
