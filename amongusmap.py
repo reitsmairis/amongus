@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 # Info sheet met afkortingen en wat welke kleur is op de afbeelding.
 # =============================================================================
 # UE: Upper Engine
@@ -33,10 +32,12 @@ import matplotlib.pyplot as plt
 # =============================================================================
 
 def coordinates(image):
-    "Function which requires an image with set colors to be interpertered"
-    "Returns multiple lists of the coordinates for, in order; "
-    "(1) Hard walls (red), (2) Soft walls (yellow), (3-8) Vent combi's locations"
-    "(9) walkable surfaces"
+    """
+    Function which requires an image with set colors to be interpertered
+    Returns multiple lists of the coordinates for, in order;
+    (1) Hard walls (red), (2) Soft walls (yellow), (3-8) Vent combi's locations
+    (9) walkable surfaces
+    """
     
     # BGR collors of objects relevant
     chardwall = [0,0,255] 
