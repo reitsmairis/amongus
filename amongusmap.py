@@ -88,10 +88,9 @@ def coordinates(image):
 
 
 # Get Image (put in your own filepath)
-img = cv2.imread('amongus_map_with_events.png')
+img = cv2.imread('the_skeld/amongus_map_with_events.png')
 
 hardwalls = coordinates(img)[0]
 softwalls = coordinates(img)[1]
 
-print(hardwalls)
 np.save('the_skeld/hardwalls', hardwalls)
