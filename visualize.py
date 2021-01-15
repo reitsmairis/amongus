@@ -46,7 +46,7 @@ server = ModularServer(AmongUs,
                        [grid],
                        "AmongUs", 
                        {'map_name': 'the_skeld', 
-                       'n_crew': 3,
+                       'n_crew': 1,
                        'n_impo': 1})
 
 server.port = 8523
