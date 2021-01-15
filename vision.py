@@ -60,7 +60,7 @@ def transform(lines, pos):
         for j in range(len(lines[i])):
             transformed_lines[i][j] = tuple(map(sum, zip(lines[i][j], pos)))
             
-    return transformed_lines
+    return transformed_lines             
 
     
 # determine the end coordinates of the lines
