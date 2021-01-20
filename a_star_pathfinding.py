@@ -68,7 +68,6 @@ def a_star(start, finish, grid):
                 final_score = total_score
                 break
             
-        
     final_path = [finish]
     current = finish
     while current != start:

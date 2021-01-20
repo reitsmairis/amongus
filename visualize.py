@@ -1,8 +1,8 @@
-#####################################
-# if bresenham is not installed yet:
-import pip
-pip.main(['install', 'bresenham'])
-#####################################
+# #####################################
+# # if bresenham is not installed yet:
+# import pip
+# pip.main(['install', 'bresenham'])
+# #####################################
 
 from mesa.visualization.modules import CanvasGrid
 from mesa.visualization.ModularVisualization import ModularServer
@@ -39,6 +39,13 @@ def agent_portrayal(agent):
     elif type(agent) == Wall:
         portrayal = {"Shape": "rect",
                     "Color": "black",
+                    "Filled": "true",
+                    "Layer": 1,
+                    "w": 1,
+                    "h": 1}
+    elif type(agent) == Vent:
+        portrayal = {"Shape": "rect",
+                    "Color": "purple",
                     "Filled": "true",
                     "Layer": 1,
                     "w": 1,
