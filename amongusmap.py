@@ -162,10 +162,18 @@ def coordinates_short_tasks(image):
 img = cv2.imread('C:/Users/bramm/Desktop/amongusmapmetvents2_shorttasks.png')
 
 hardwalls = coordinates_walls_vents(img)[0]
-softwalls = coordinates_walls_vents(img)[1]
+obstructions = coordinates_walls_vents(img)[1]
 
-for i in range(8):
-    print(coordinates_short_tasks(img)[i])
+vents = []
+for i in range(2,8):
+    vents.append(coordinates_walls_vents(img)[i])
+    
+shorttasks = []
+for i in range(0,8):
+    shorttasks.append(coordinates_short_tasks(img)[i])
 
 
-np.save('the_skeld/hardwalls', hardwalls)
+np.save('hardwalls.npy', hardwalls)
+np.save('obstructions.npy', obstructions)
+np.save('vents.npy', vents)
+np.save('shorttasks.npy', shorttasks)
