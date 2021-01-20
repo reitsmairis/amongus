@@ -1,8 +1,8 @@
-# #####################################
-# # if bresenham is not installed yet:
-# import pip
-# pip.main(['install', 'bresenham'])
-# #####################################
+#####################################
+# if bresenham is not installed yet:
+#import pip
+#pip.main(['install', 'bresenham'])
+#####################################
 
 from mesa.visualization.modules import CanvasGrid
 from mesa.visualization.ModularVisualization import ModularServer
@@ -25,17 +25,13 @@ sys.stdout = orig_stdout
 # of agents distinguishable
 def agent_portrayal(agent):
     if type(agent) == Crewmate:
-        portrayal = {"Shape": "circle",
-                    "Color": "blue",
-                    "Filled": "true",
+        portrayal = {"Shape": "images\crewmate.png",
                     "Layer": 1,
-                    "r": 2}
+                    "scale": 7}
     elif type(agent) == Imposter:
-        portrayal = {"Shape": "circle",
-                    "Color": "red",
-                    "Filled": "true",
+        portrayal = {"Shape": "images\imposter.png",
                     "Layer": 1,
-                    "r": 2}
+                    "scale": 7}
     elif type(agent) == Wall:
         portrayal = {"Shape": "rect",
                     "Color": "black",
@@ -43,13 +39,31 @@ def agent_portrayal(agent):
                     "Layer": 1,
                     "w": 1,
                     "h": 1}
+    elif type(agent) == Obstruction:
+        portrayal = {"Shape": "rect",
+                "Color": "gray",
+                "Filled": "true",
+                "Layer": 1,
+                "w": 1,
+                "h": 1}
     elif type(agent) == Vent:
         portrayal = {"Shape": "rect",
-                    "Color": "purple",
-                    "Filled": "true",
-                    "Layer": 1,
-                    "w": 1,
-                    "h": 1}
+            "Color": "green",
+            "Filled": "true",
+            "Layer": 1,
+            "scale": 4,
+            "w": 1,
+            "h": 1}
+    
+    elif type(agent) == ShortTask:
+        portrayal = {"Shape": "rect",
+            "Color": "pink",
+            "Filled": "true",
+            "Layer": 1,
+            "scale": 2,
+            "w": 1,
+            "h": 1}
+    
     return portrayal
 
 # Create a grid of 114 by 114 cells, and display it as 570 by 570 pixels
