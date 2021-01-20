@@ -29,14 +29,27 @@ import matplotlib.pyplot as plt
 # C-GbS-Ad Hemselblauw
 # W-N Blauw
 # N-S Donkerblauw
+#
+# Short Tasks;
+# Calibrate Distributer
+# Chart Course
+# Clean O2 Filter
+# Divert Power (2 parts, one option and seven options)
+# Stabilize Steering
+# Unlock Manifolds
+# Upload Data (2 parts, five options and one option)
+# Prime Shields 
+#
+# Common tasks
+#
 # =============================================================================
 
-def coordinates(image):
+def coordinates_walls_vents(image):
     """
     Function which requires an image with set colors to be interpertered
     Returns multiple lists of the coordinates for, in order;
-    (1) Hard walls (red), (2) Soft walls (yellow), (3-8) Vent combi's locations
-    (9) walkable surfaces
+    (0) Hard walls (red), (1) Soft walls (yellow), (2-7) Vent combi's locations
+    (8) walkable surfaces
     """
     
     # BGR collors of objects relevant
@@ -50,9 +63,6 @@ def coordinates(image):
     cvent_N_S = [96,32,0]
     cwalkable = [255,255,255]
     
-
-    # Get X and Y coordinates of all objects
-    
     # The wall (red)
     X,Y = np.where(np.all(img==chardwall,axis=2))
     hardwall = np.column_stack((Y,X))
@@ -60,6 +70,7 @@ def coordinates(image):
     # Impassable objects
     X,Y = np.where(np.all(img==csoftwall,axis=2))
     softwall = np.column_stack((Y,X))
+    
     
     # Different vents
     X,Y = np.where(np.all(img==cvent_UE_R,axis=2))
@@ -83,14 +94,78 @@ def coordinates(image):
     X,Y = np.where(np.all(img==cwalkable,axis=2))
     walkable = np.column_stack((Y,X))
     
-    
     return hardwall, softwall, vent_UE_R, vent_LE_R, vent_MB_S_E, vent_C_GbS_Ad, vent_W_N, vent_N_S, walkable
+
+def coordinates_short_tasks(image):
+    """
+    Function which requires an image with set colors to be interpertered
+    Returns multiple lists of the coordinates for short tasks, in order;
+    [0] calibrate_distributer, 
+    [1] chart_course, 
+    [2] clean_o2_filter, 
+    [3][0] first part of divert_power, [3][1] second part of divert_power,
+    [4] stabelize_steering
+    [5] unlock_manifolds
+    [6][0] first part of upload_data, [6][1] second part of upload data
+    [7] prime_shields
+    """
+    
+    
+    # BGR colors of short tasks
+    ccalibrate_distributer = [201,174,255]
+    cchart_course = [202,174,255]
+    cclean_o2_filter = [203,174,255]
+    cdivert_power_1 = [204,174,255]
+    cdivert_power_2 = [205,174,255]
+    cstabelize_steering =  [206,174,255]
+    cunlock_manifolds = [207,174,255]
+    cupload_data_1 = [208,174,255]
+    cupload_data_2 = [209,174,255]
+    cprime_shields = [210,174,255]
+
+    X,Y = np.where(np.all(img==ccalibrate_distributer,axis=2))
+    calibrate_distributer = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cchart_course,axis=2))
+    chart_course = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cclean_o2_filter,axis=2))
+    clean_o2_filter = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cdivert_power_1,axis=2))
+    divert_power_1 = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cdivert_power_2,axis=2))
+    divert_power_2 = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cstabelize_steering,axis=2))
+    stabelize_steering = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cunlock_manifolds,axis=2))
+    unlock_manifolds = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cupload_data_1,axis=2))
+    upload_data_1 = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cupload_data_2,axis=2))
+    upload_data_2 = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cprime_shields,axis=2))
+    prime_shields = np.column_stack((Y,X))
+
+    return calibrate_distributer, chart_course, clean_o2_filter, [divert_power_1, divert_power_2], stabelize_steering, unlock_manifolds, [upload_data_1, upload_data_2], prime_shields  
+
+
 
 
 # Get Image (put in your own filepath)
-img = cv2.imread('the_skeld/amongus_map_with_events.png')
+img = cv2.imread('C:/Users/bramm/Desktop/amongusmapmetvents2_shorttasks.png')
 
-hardwalls = coordinates(img)[0]
-softwalls = coordinates(img)[1]
+hardwalls = coordinates_walls_vents(img)[0]
+softwalls = coordinates_walls_vents(img)[1]
+
+for i in range(8):
+    print(coordinates_short_tasks(img)[i])
+
 
 np.save('the_skeld/hardwalls', hardwalls)
