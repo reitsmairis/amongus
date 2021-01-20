@@ -65,6 +65,7 @@ def a_star(start, finish, grid):
             
             if neighbor == finish:
                 open_set = {}
+                final_score = total_score
                 break
             
         
@@ -75,5 +76,5 @@ def a_star(start, finish, grid):
         final_path.append(current)
     
     final_path.pop(-1)
-    
-    return final_path
+
+    return final_path, final_score

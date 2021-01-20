@@ -1,3 +1,9 @@
+#####################################
+# if bresenham is not installed yet:
+import pip
+pip.main(['install', 'bresenham'])
+#####################################
+
 from mesa.visualization.modules import CanvasGrid
 from mesa.visualization.ModularVisualization import ModularServer
 from mesa.visualization.modules import ChartModule
@@ -9,7 +15,9 @@ import sys
 
 # Change stdout so we can ignore most prints etc.
 orig_stdout = sys.stdout
+
 sys.stdout = open(os.devnull, 'w')
+
 IPython.get_ipython().magic("run amongus_model.ipynb")
 sys.stdout = orig_stdout
 
@@ -46,7 +54,7 @@ server = ModularServer(AmongUs,
                        [grid],
                        "AmongUs", 
                        {'map_name': 'the_skeld', 
-                       'n_crew': 1,
+                       'n_crew': 3,
                        'n_impo': 1})
 
 server.port = 8523
