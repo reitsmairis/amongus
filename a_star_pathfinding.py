@@ -41,8 +41,9 @@ def a_star(start, finish, grid):
             
             #first check of this step not an obstacle SO CHANGE THE FALSE STATEMENT TO CHECK FOR OBSTACLE
             if not grid.is_cell_empty(neighbor):
-                closed_set.add(neighbor)
-                continue
+                if not neighbor == finish:
+                    closed_set.add(neighbor)
+                    continue
                 
             #check if the step is in the closed list
             if neighbor in closed_set:
