@@ -44,6 +44,8 @@ import matplotlib.pyplot as plt
 #
 # =============================================================================
 
+HEIGHT = 137
+
 def coordinates_walls_vents(image):
     """
     Function which requires an image with set colors to be interpertered
@@ -74,24 +76,31 @@ def coordinates_walls_vents(image):
     
     # Different vents
     X,Y = np.where(np.all(img==cvent_UE_R,axis=2))
+    # Y = HEIGHT - Y
     vent_UE_R = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_LE_R,axis=2))
+    # Y = HEIGHT - Y
     vent_LE_R = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_MB_S_E,axis=2))
+    # Y = HEIGHT - Y
     vent_MB_S_E = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_C_GbS_Ad,axis=2))
+    # Y = HEIGHT - Y
     vent_C_GbS_Ad = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_W_N,axis=2))
+    # Y = HEIGHT - Y
     vent_W_N = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cvent_N_S,axis=2))
+    # Y = HEIGHT - Y
     vent_N_S = np.column_stack((Y,X))
     
     X,Y = np.where(np.all(img==cwalkable,axis=2))
+    # Y = HEIGHT - Y
     walkable = np.column_stack((Y,X))
     
     return hardwall, softwall, vent_UE_R, vent_LE_R, vent_MB_S_E, vent_C_GbS_Ad, vent_W_N, vent_N_S, walkable

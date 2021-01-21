@@ -38,6 +38,7 @@ def a_star(start, finish, grid):
         open_set.remove(current_node)
         closed_set.add(current_node)
         for neighbor in neighbors:
+
             
             #first check of this step not an obstacle SO CHANGE THE FALSE STATEMENT TO CHECK FOR OBSTACLE
             if not grid.is_cell_empty(neighbor):
@@ -66,7 +67,6 @@ def a_star(start, finish, grid):
             
             if neighbor == finish:
                 open_set = {}
-                final_score = total_score
                 break
             
     final_path = [finish]
