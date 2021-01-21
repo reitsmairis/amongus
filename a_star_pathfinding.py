@@ -77,4 +77,4 @@ def a_star(start, finish, grid):
     
     final_path.pop(-1)
 
-    return final_path, final_score
+    return final_path, total_score
