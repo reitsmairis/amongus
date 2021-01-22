@@ -168,7 +168,7 @@ def coordinates_short_tasks(image):
 
 
 # Get Image (put in your own filepath)
-img = cv2.imread('C:/Users/bramm/Desktop/amongusmapmetvents2_shorttasks.png')
+img = cv2.imread('C:/Users/bramm/Desktop/the_skeld_walls_obstructions_vents_tasks_flipped.png')
 
 hardwalls = coordinates_walls_vents(img)[0]
 obstructions = coordinates_walls_vents(img)[1]
