@@ -61,6 +61,16 @@ def agent_portrayal(agent):
             "scale": 2,
             "w": 1,
             "h": 1}
+        
+    elif type(agent) == CommonTask:
+        portrayal = {"Shape": "rect",
+            "Color": "blue",
+            "Filled": "true",
+            "Layer": 1,
+            "scale": 2,
+            "w": 1,
+            "h": 1}
+        
     elif type(agent) == Dead_crewmate:
         portrayal = {"Shape": "rect",
                 "Color": "red",
