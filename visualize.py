@@ -15,7 +15,6 @@ import sys
 
 # Change stdout so we can ignore most prints etc.
 orig_stdout = sys.stdout
-
 sys.stdout = open(os.devnull, 'w')
 
 IPython.get_ipython().magic("run amongus_model.ipynb")
@@ -54,15 +53,21 @@ def agent_portrayal(agent):
             "scale": 4,
             "w": 1,
             "h": 1}
-    
     elif type(agent) == ShortTask:
         portrayal = {"Shape": "rect",
-            "Color": "pink",
+            "Color": "orange",
             "Filled": "true",
             "Layer": 1,
             "scale": 2,
             "w": 1,
             "h": 1}
+    elif type(agent) == Dead_crewmate:
+        portrayal = {"Shape": "rect",
+                "Color": "red",
+                "Filled": "true",
+                "Layer": 1,
+                "w": 1,
+                "h": 1}
     
     return portrayal
 
@@ -78,6 +83,6 @@ server = ModularServer(AmongUs,
                        'n_crew': 3,
                        'n_impo': 1})
 
-server.port = 8523
+server.port = 8527
 
 server.launch()
