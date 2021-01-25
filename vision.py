@@ -37,7 +37,7 @@ def origin_lines(x_coords, y_coords):
     ''' 
     lines = []
     for i in range(len(x_coords)):
-        line = list(bresenham(0, 0, x_coords[i], y_coords[i]))
+        line = list(bresenham(0, 0, int(x_coords[i]), int(y_coords[i])))
         lines.append(line)
     
     return lines
