@@ -40,8 +40,9 @@ import matplotlib.pyplot as plt
 # Upload Data (2 parts, five options and one option)
 # Prime Shields 
 #
-# Common tasks
-#
+# Common tasks;
+# Swipe Card
+# Fix wiring (3 parts, six options)
 # =============================================================================
 
 HEIGHT = 137
@@ -164,11 +165,37 @@ def coordinates_short_tasks(image):
 
     return calibrate_distributer, chart_course, clean_o2_filter, [divert_power_1, divert_power_2], stabelize_steering, unlock_manifolds, [upload_data_1, upload_data_2], prime_shields  
 
-
-
+def coordinates_common_tasks(image):
+    """
+    Function which requires an image with set colors to be interpertered
+    Returns multiple lists of the coordinates for common tasks, in order;
+    [0] Swipe Card, 
+    [1] Fix wiring, 6 options with 3 tasks in order
+    """
+    
+    # BGR Colors of common tasks
+    cswipe_card = [200,200,50]
+    cfix_wires = [200,200,51]
+    
+    X,Y = np.where(np.all(img==cswipe_card,axis=2))
+    swipe_card = np.column_stack((Y,X))
+    
+    X,Y = np.where(np.all(img==cfix_wires,axis=2))
+    fix_wires = np.column_stack((Y,X))
+    
+    # create the 6 possible task orders 
+    fw1 = fix_wires[0], fix_wires[1], fix_wires[2]
+    fw2 = fix_wires[1], fix_wires[2], fix_wires[3]
+    fw3 = fix_wires[2], fix_wires[3], fix_wires[4]
+    fw4 = fix_wires[3], fix_wires[4], fix_wires[5]
+    fw5 = fix_wires[4], fix_wires[5], fix_wires[0]
+    fw6 = fix_wires[5], fix_wires[0], fix_wires[1]
+    
+    
+    return swipe_card, [fw1, fw2, fw3, fw4, fw5, fw6]
 
 # Get Image (put in your own filepath)
-img = cv2.imread('C:/Users/bramm/Desktop/the_skeld_walls_obstructions_vents_tasks_flipped.png')
+img = cv2.imread('C:/Users/bramm/Documents/GitHub/amongus/the_skeld_walls_obstructions_vents_tasks_flipped_common_tasks.png')
 
 hardwalls = coordinates_walls_vents(img)[0]
 obstructions = coordinates_walls_vents(img)[1]
@@ -181,8 +208,11 @@ shorttasks = []
 for i in range(0,8):
     shorttasks.append(coordinates_short_tasks(img)[i])
 
+commontasks = [coordinates_common_tasks(img)[0], coordinates_common_tasks(img)[1]]
+
 
 np.save('hardwalls.npy', hardwalls)
 np.save('obstructions.npy', obstructions)
 np.save('vents.npy', vents)
 np.save('shorttasks.npy', shorttasks)
+np.save('commontasks.npy', commontasks)
