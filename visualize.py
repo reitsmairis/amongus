@@ -27,10 +27,12 @@ def agent_portrayal(agent):
         portrayal = {"Shape": "images\crewmate.png",
                     "Layer": 1,
                     "scale": 7}
+        
     elif type(agent) == Imposter:
         portrayal = {"Shape": "images\imposter.png",
                     "Layer": 1,
                     "scale": 7}
+        
     elif type(agent) == Wall:
         portrayal = {"Shape": "rect",
                     "Color": "black",
@@ -38,6 +40,7 @@ def agent_portrayal(agent):
                     "Layer": 1,
                     "w": 1,
                     "h": 1}
+        
     elif type(agent) == Obstruction:
         portrayal = {"Shape": "rect",
                 "Color": "gray",
@@ -45,14 +48,12 @@ def agent_portrayal(agent):
                 "Layer": 1,
                 "w": 1,
                 "h": 1}
+        
     elif type(agent) == Vent:
-        portrayal = {"Shape": "rect",
-            "Color": "green",
-            "Filled": "true",
-            "Layer": 1,
-            "scale": 4,
-            "w": 1,
-            "h": 1}
+        portrayal = {"Shape": "images\vent.png",
+            "Layer": 2,
+            "scale": 5}
+        
     elif type(agent) == ShortTask:
         portrayal = {"Shape": "rect",
             "Color": "orange",
@@ -72,25 +73,22 @@ def agent_portrayal(agent):
             "h": 1}
         
     elif type(agent) == Dead_crewmate:
-        portrayal = {"Shape": "rect",
-                "Color": "red",
-                "Filled": "true",
-                "Layer": 1,
-                "w": 1,
-                "h": 1}
+        portrayal =  {"Shape": "images\dead.png",
+            "Layer": 2,
+            "scale": 7}
     
     return portrayal
 
 # Create a grid of 114 by 114 cells, and display it as 570 by 570 pixels
 # grid = CanvasGrid(agent_portrayal, 114, 114, 570, 570)
-grid = CanvasGrid(agent_portrayal, 242, 138, 1210, 690)
+grid = CanvasGrid(agent_portrayal, 242, 138, 3630, 2070)
 
 # Create the server, and pass the grid and the graph
 server = ModularServer(AmongUs,
                        [grid],
                        "AmongUs", 
                        {'map_name': 'the_skeld', 
-                       'n_crew': 3,
+                       'n_crew': 5,
                        'n_impo': 1})
 
 server.port = 8527
