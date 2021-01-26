@@ -3,6 +3,8 @@
 
 # In[13]:
 
+
+import cv2
 import numpy as np
 
 #trust matrix does not change within a game, sus matrix does
@@ -28,14 +30,32 @@ def update_trust(run, trust_matrix):
     
     np.save(f'social_matrixes/trust_{run}.npy', trust)
 
-#this is done within the game
+#this is done within the game and after the game to save the matrix
 def update_sus(run, game_finished, sus_matrix, person_1, person_2):
-    sus = sus_matrix
     
+    #kill changes sus score to 1
+    if kill:
+        
+        return 1
+    
+    #vent changes sus score to 1
+    if vent:
+        
+        return 1
+    
+    #changes sus score -0.01
+    if walk:
+        
+        return -0.01
+    
+    #changes sus score -0.05
+    if task:
+        
+        return -0.05
     
     if game_finished:
         run += 1
-        np.save(f'social_matrixes/sus_{run}.npy', sus)
+        np.save(f'social_matrixes/sus_{run}.npy', sus_matrix)
         return
     
     return sus
