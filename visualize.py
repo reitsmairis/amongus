@@ -24,6 +24,7 @@ sys.stdout = orig_stdout
 # of agents distinguishable
 def agent_portrayal(agent):
     if type(agent) == Crewmate:
+        print("lekker mannetje")
         portrayal = {"Shape": "images\crewmate.png",
                     "Layer": 1,
                     "scale": 7}
@@ -91,7 +92,7 @@ server = ModularServer(AmongUs,
                        [grid],
                        "AmongUs", 
                        {'map_name': 'the_skeld', 
-                       'n_crew': 5,
+                       'n_crew': 3,
                        'n_impo': 1})
 
 server.port = 8527
