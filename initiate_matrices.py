@@ -3,8 +3,6 @@
 
 # In[13]:
 
-
-import cv2
 import numpy as np
 
 #trust matrix does not change within a game, sus matrix does
