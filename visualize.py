@@ -50,9 +50,13 @@ def agent_portrayal(agent):
                 "h": 1}
         
     elif type(agent) == Vent:
-        portrayal = {"Shape": "images\vent.png",
-            "Layer": 2,
-            "scale": 5}
+        portrayal = {"Shape": "rect",
+            "Color": "green",
+            "Filled": "true",
+            "Layer": 1,
+            "scale": 2,
+            "w": 1,
+            "h": 1}
         
     elif type(agent) == ShortTask:
         portrayal = {"Shape": "rect",
@@ -74,14 +78,14 @@ def agent_portrayal(agent):
         
     elif type(agent) == Dead_crewmate:
         portrayal =  {"Shape": "images\dead.png",
-            "Layer": 2,
-            "scale": 7}
+            "Layer": 1,
+            "scale": 4}
     
     return portrayal
 
 # Create a grid of 114 by 114 cells, and display it as 570 by 570 pixels
 # grid = CanvasGrid(agent_portrayal, 114, 114, 570, 570)
-grid = CanvasGrid(agent_portrayal, 242, 138, 3630, 2070)
+grid = CanvasGrid(agent_portrayal, 242, 138, 1815, 1035)
 
 # Create the server, and pass the grid and the graph
 server = ModularServer(AmongUs,
