@@ -84,8 +84,7 @@ def agent_portrayal(agent):
     
     return portrayal
 
-# Create a grid of 114 by 114 cells, and display it as 570 by 570 pixels
-# grid = CanvasGrid(agent_portrayal, 114, 114, 570, 570)
+# Iniate grid with right pixels
 grid = CanvasGrid(agent_portrayal, 242, 138, 1815, 1035)
 
 # Create the server, and pass the grid and the graph
