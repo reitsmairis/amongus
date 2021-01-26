@@ -19,7 +19,6 @@ def initiate_matrixes(number_players):
     sus = 1 - trust
     
     np.save('social_matrixes/trust_0.npy', trust)
-    np.save('social_matrixes/sus_0.npy', sus)
 
 #this is done after each game
 def update_trust(run, trust_matrix):
