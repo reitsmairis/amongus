@@ -1,7 +1,7 @@
 # Agent Based Modelling - AmongUs
 
 * This GitHub repository contains an agent based AmongUs model, created with Mesa.
-* With Main.ipynb, the model can be run and data can be generated.
+* With Main.ipynb, the model can be run and data can be generated and visualised.
 * The model can be visualised by running 'ipython visualise.py'.
 * The 'example_data' folder contains large amounts of data that already has been generated, for data visualisation purposes.
 * This GitHub repository also contains the technical report about the project.
