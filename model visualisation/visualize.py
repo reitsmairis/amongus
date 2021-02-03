@@ -17,18 +17,20 @@ import sys
 orig_stdout = sys.stdout
 sys.stdout = open(os.devnull, 'w')
 
-IPython.get_ipython().magic("run amongus_model.py")
+curr_dir = os.getcwd()
+path = curr_dir
+IPython.get_ipython().magic('run amongus_model.py')
 sys.stdout = orig_stdout
 
 # You can change this to whatever you want. Make sure to make the different types
 # of agents distinguishable
 def agent_portrayal(agent):
     if type(agent) == Crewmate:
-        portrayal = {"Shape": "the_skeld\sprites\crewmate.png",
+        portrayal = {"Shape": f'the_skeld\sprites\crewmate.png',
                     "Layer": 1,
                     "scale": 7}
         
-    elif type(agent) == Imposter:
+    elif type(agent) == Impostor:
         portrayal = {"Shape": "the_skeld\sprites\imposter.png",
                     "Layer": 1,
                     "scale": 7}
@@ -86,6 +88,7 @@ def agent_portrayal(agent):
 # Iniate grid with right pixels
 grid = CanvasGrid(agent_portrayal, 242, 138, 1815, 1035)
 
+
 # fixed_parameters
 starting_positions = [(130, 100), (121, 107), (139, 108), 
 (130, 114), (123, 103), (137, 103), (136,112), (124,112)]
@@ -110,12 +113,21 @@ sus_default = .0005
 gamma1 = 0.04
 gamma2 = -0.02
 
+
+np.save(f'{path}/generated_data/unsorted/win_matrices/win_matrix_visualize_0.npy', np.full((number_of_crewmates+1, 2), 0))
+np.save(f'{path}/generated_data/unsorted/social_matrices/trust_0.npy', np.full((1, number_of_crewmates+1), .5))
+np.save(f'{path}/generated_data/unsorted/misc_data/iteration_data.npy', [])
+np.save(f'{path}/generated_data/unsorted/misc_data/tasks_data.npy', [])
+np.save(f'{path}/generated_data/unsorted/misc_data/crewmates_done_data.npy', [])
+np.save(f'{path}/generated_data/unsorted/misc_data/win_data.npy', [])
+np.save(f'{path}/generated_data/unsorted/misc_data/dead_data.npy', [])
+
 # Create the server, and pass the grid and the graph
 server = ModularServer(AmongUs,
                        [grid],
                        "AmongUs", 
                        {'map_name': 'the_skeld', 
-                        'n_crew': 5,
+                        'n_crew': number_of_crewmates ,
                         'starting_positions': starting_positions,
                         'num_tasks_crewmate': num_tasks_crewmate,
                         'injob_time': injob_time,
@@ -130,7 +142,6 @@ server = ModularServer(AmongUs,
                         'gamma1': gamma1,
                         'gamma2': gamma2,
                         'n_iterated_games': n_iterated_games
-                        
                        }
                       )
 
