@@ -2,7 +2,7 @@
 
 * This GitHub repository contains an agent based AmongUs model, created with Mesa.
 * With Main.ipynb, the model can be run and data can be generated.
-* The model can be visualised by running 'ipython visualize.py', present in the 'model visualisation' folder.
+* The model can be visualised by running 'ipython visualise.py'.
 * The 'example_data' folder contains large amounts of data that already has been generated, for data visualisation purposes.
 * This GitHub repository also contains the technical report about the project.
 
