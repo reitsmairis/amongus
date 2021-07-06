@@ -16,11 +16,3 @@ Python packages and versions used:
 * matplotlib 3.2.2
 * bresenham 0.2.1
 * ipython 7.19.0
-
----
-Feel free to contact any of the contributers at:
-* bram.mobi@gmail.com
-* malousprinkhuizen@gmail.com
-* pjotrvanderjagt@gmail.com
-* reitsmairis@gmail.com
-* rutgervanwoerkom@gmail.com
